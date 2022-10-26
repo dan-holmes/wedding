@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dan & Emma's Wedding</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">What</a> |
+            <a href="when.html">When</a> |
+            <a href="where.html">Where</a> |
+            Who (RSVP) |
+            <a href="why.html">Why</a> |
+            <a href="how.html">How</a>
+        </nav>
+        <article>
+            <h1>Who</h1>
+            <div>
+                <h2>RSVP</h2>
+                <form id="rsvp-form" autocomplete="off">
+                    <div id="rsvp-form-guests">
+                        <template class="guest-card">
+                            <fieldset>
+                                <div class="field">
+                                    <label for="name">Name:</label><br>
+                                    <div class="autocomplete">
+                                        <input type="text" class="name" id="name" name="name"><br>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="rsvp">RSVP:</label><br>
+                                    <input type="radio" id="yes" name="rsvp" value="Yes">
+                                    <label for="yes">Yes</label>
+                                    <input type="radio" id="no" name="rsvp" value="No">
+                                    <label for="yes">No</label>
+                                </div>
+                                <div class="field">
+                                    <label for="diet">Dietary Requirements:</label><br>
+                                    <input type="text" id="diet" name="diet"><br>
+                                </div>
+                            </fieldset>
+                        </template>
+                    </div>
+                    <button type="button" onclick="addAnother()">Add another guest</button>
+                    <div>
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+                <script src="scripts/autocomplete.js"></script>
+                <script src="scripts/rsvp.js"></script>
+            </div>
+        </article>
+    </body>
+</html>
