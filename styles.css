@@ -1,5 +1,11 @@
+html {
+    background-image: url("images/lavender.jpg");
+    background-attachment: fixed;
+    background-position-x: center;
+    background-position-y: 0;
+}
+
 body {
-    background-color: lavender;
     text-align: center;
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
@@ -10,7 +16,11 @@ nav {
 }
 
 a {
-    color: black
+    color: black;
+}
+
+.inactive-link {
+    color: grey;
 }
 
 h1 {
