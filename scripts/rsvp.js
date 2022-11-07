@@ -1,6 +1,7 @@
 let guestNames = [];
 window.addEventListener('load', async (event) => {
     guestNames = await getGuestNames();
+    addAnother();
   });
 
 const addAnother = () => {
