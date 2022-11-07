@@ -32,6 +32,11 @@ article img {
     border-radius: 100px;
 }
 
+article table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 article .wedding-date {
     font-size: xx-large;
 }

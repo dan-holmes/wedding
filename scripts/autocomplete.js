@@ -96,5 +96,3 @@ function autocomplete(inp, arr) {
   }
   
 const guestList = ["Bea Sear", "Daniel Holmes", "Emma James", "Jack Petrie", "Josh Da Costa"];
-
-autocomplete(document.getElementById("name"), guestList);
