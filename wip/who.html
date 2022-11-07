@@ -17,7 +17,7 @@
             <h1>Who</h1>
             <div>
                 <h2>RSVP</h2>
-                <form id="rsvp-form" autocomplete="off" action="" onsubmit="event.preventDefault(); updateGuest()">
+                <form id="rsvp-form" autocomplete="off" action="" onsubmit="event.preventDefault(); updateGuests()">
                     <div id="rsvp-form-guests">
                         <template class="guest-card-template">
                             <div class="guest-card">
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="field diet-field" style="display:none">
                                         <label for="diet">Dietary Requirements:</label><br>
-                                        <input type="text" id="diet" name="diet"><br>
+                                        <input type="text" class="diet" id="diet" name="diet"><br>
                                     </div>
                                 </fieldset>
                             </div>

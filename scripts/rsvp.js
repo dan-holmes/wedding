@@ -1,9 +1,13 @@
+let guestNames = [];
+window.addEventListener('load', async (event) => {
+    guestNames = await getGuestNames();
+  });
+
 const addAnother = () => {
     const nameInputs = document.getElementsByClassName("name");
     const guestNumber = nameInputs.length;
     const template = document.getElementsByClassName("guest-card-template")[0];
     const newGuestCard = template.content.cloneNode(true);
-    console.log(newGuestCard.querySelectorAll('[name="rsvp"]'))
     newGuestCard.querySelectorAll('[name="rsvp"]').forEach(element => {
         element.setAttribute("name", "rsvp-" + guestNumber)
     });
@@ -11,7 +15,8 @@ const addAnother = () => {
         element.setAttribute("for", "rsvp-" + guestNumber)
     });
     document.getElementById("rsvp-form-guests").appendChild(newGuestCard);
-    autocomplete(nameInputs[guestNumber], guestList);
+    
+    autocomplete(nameInputs[guestNumber], guestNames);
 
     const dietField = document.getElementsByClassName("diet-field")[guestNumber];
     document.getElementsByClassName("yes")[guestNumber]
@@ -20,22 +25,24 @@ const addAnother = () => {
         .addEventListener("click", () => dietField.style.display = "none");
 }
 
-const updateGuest = () => {
+const updateGuests = () => {
     const form = document.getElementById("rsvp-form");
     const guestCards = Array.from(form.getElementsByClassName("guest-card"));
-    console.log(guestCards);
-    const items = guestCards.map(guestCard => {
+    const guests = guestCards.map(guestCard => {
         return {
-            name: guestCard.querySelector('#name').value,
+            name: guestCard.querySelector('.name').value,
             RSVP: guestCard.querySelector('input[type=radio]:checked').value,
-            diet: guestCard.querySelector('#diet').value,
+            diet: guestCard.querySelector('.diet').value,
         }
     });
+    guests.forEach(guest => updateGuest(guest));
+}
+
+const updateGuest = (guest) => {
     const data = {
         TableName: "wedding_guests",
-        Item: items[0],
+        Item: guest,
     }
-    console.log(data)
     fetch('https://w6f2wu6d64li4mgei2wrg7z5pa0zueeh.lambda-url.eu-west-2.on.aws/', {
         method: "POST",
         mode: "no-cors",
@@ -47,7 +54,7 @@ const updateGuest = () => {
         .catch(err => console.log(err));
 }
 
-const getGuests = () => {
+const getGuestList = () =>
     fetch('https://w6f2wu6d64li4mgei2wrg7z5pa0zueeh.lambda-url.eu-west-2.on.aws/?TableName=wedding_guests')
         .then(response => response.json())
         .then(data => {
@@ -55,7 +62,12 @@ const getGuests = () => {
             guests.sort((a, b) => (a.name > b.name) ? 1 : -1);
             guests.reverse();
             return guests;
-        })
+        });
+
+const getGuestNames = () =>getGuestList().then(guests => guests.map(guest => guest.name));
+
+const populateTable = () => {
+    getGuestList()
         .then(guests => guests.forEach(guest => {
             const table = document.getElementById("guest-list");
             const row = table.insertRow(1);

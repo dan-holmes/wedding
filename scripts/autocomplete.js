@@ -94,5 +94,3 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
   }
-  
-const guestList = ["Bea Sear", "Daniel Holmes", "Emma James", "Jack Petrie", "Josh Da Costa"];
