@@ -2,19 +2,25 @@
 <html>
     <head>
         <title>Dan & Emma's Wedding</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <nav>
-            <a href="index.html">What</a> |
-            <a href="when.html">When</a> |
-            <a href="where.html">Where</a> |
-            Who (RSVP) |
-            <a href="why.html">Why</a> |
-            <a href="how.html">How</a>
-        </nav>
+        <header>
+            <h1>Dan & Emma</h1>
+            <nav id="primary_nav">
+                <ul>
+                    <li><a href="index.html">What</a></li>
+                    <li><a href="where.html">Where</a></li>
+                    <li><a href="when.html">When</a></li>
+                    <li>Who (RSVP)</li>
+                    <li><a href="why.html">Why</a></li>
+                    <li><a href="how.html">How</a></li>
+                </ul>
+            </nav>
+        </header>
         <article>
-            <h1>Who</h1>
             <div>
                 <h2>RSVP</h2>
                 <form id="rsvp-form" autocomplete="off" action="" onsubmit="event.preventDefault(); updateGuests()">
