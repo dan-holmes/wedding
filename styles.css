@@ -101,6 +101,14 @@ article form input {
     margin-top: 10px;
 }
 
+#message .success {
+    color: green;
+}
+
+#message .error {
+    color: red;
+}
+
 /*header*/
  
 header {

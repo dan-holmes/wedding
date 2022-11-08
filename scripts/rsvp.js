@@ -44,6 +44,7 @@ const updateGuest = (guest) => {
         TableName: "wedding_guests",
         Item: guest,
     }
+
     fetch('https://w6f2wu6d64li4mgei2wrg7z5pa0zueeh.lambda-url.eu-west-2.on.aws/', {
         method: "POST",
         mode: "no-cors",
@@ -52,7 +53,19 @@ const updateGuest = (guest) => {
         },
         body: JSON.stringify(data)
     })
-        .catch(err => console.log(err));
+        .then(async (response) => {
+            if (!response.ok) {
+                const error = await response.text();
+                throw Error(error);
+            }
+            
+            document.getElementById('rsvp-form-guests').innerHTML = "";
+            document.getElementById('message').innerHTML += "<div class='success'>Successfully submitted RSVP</div>"
+        })
+        .catch((err) => {
+            console.log(err)
+            document.getElementById('message').innerHTML += `<div class='error'>${err}</div>`;
+        });
 }
 
 const getGuestNames = () => getGuestList().then(guests => guests.map(guest => guest.name));
