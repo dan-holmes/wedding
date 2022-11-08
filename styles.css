@@ -101,6 +101,10 @@ article form input {
     margin-top: 10px;
 }
 
+#message {
+    margin-bottom: 20px
+}
+
 #message .success {
     color: green;
 }

@@ -36,35 +36,33 @@ const updateGuests = () => {
             diet: guestCard.querySelector('.diet').value,
         }
     });
-    guests.forEach(guest => updateGuest(guest));
-}
-
-const updateGuest = (guest) => {
+    
     const data = {
         TableName: "wedding_guests",
-        Item: guest,
+        Items: guests
     }
 
     fetch('https://w6f2wu6d64li4mgei2wrg7z5pa0zueeh.lambda-url.eu-west-2.on.aws/', {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        mode: "cors",
         body: JSON.stringify(data)
     })
         .then(async (response) => {
             if (!response.ok) {
-                const error = await response.text();
-                throw Error(error);
+                const errorText = await response.text();
+                throw Error(errorText);
             }
-            
-            document.getElementById('rsvp-form-guests').innerHTML = "";
-            document.getElementById('message').innerHTML += "<div class='success'>Successfully submitted RSVP</div>"
+
+            return await response.json();
+        })
+        .then(data => {
+            document.getElementById('rsvp-form').innerHTML = "";
+            document.getElementById('message').innerHTML =
+                `<div class='success'>Successfully submitted RSVP for ${data} guest${data > 1 ? 's' : ''}</div>`
         })
         .catch((err) => {
             console.log(err)
-            document.getElementById('message').innerHTML += `<div class='error'>${err}</div>`;
+            document.getElementById('message').innerHTML = `<div class='error'>${err}</div>`;
         });
 }
 
