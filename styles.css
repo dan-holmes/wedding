@@ -172,3 +172,13 @@ header li {
         width: 100%;
     }
   }
+
+#countdown-container {
+    border-color: black;
+    border-style: dashed;
+    padding: 1rem;
+    width: fit-content;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
